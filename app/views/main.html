@@ -1,0 +1,65 @@
+<div class="container">
+<form role="form" ng-submit="newMessage()">
+  <div class="form-group">
+    <label for="messageTheme">Theme of message</label>
+    <input type="theme" class="form-control" id="messageTheme" placeholder="Enter theme of the message">
+  </div>
+
+  <div class="form-group">
+    <label for="messageValue">Message text</label>
+    <textarea ng-model="message" class="form-control" rows="3" placeholder="Your messsage text"></textarea>
+
+    <input type="submit" class="btn btn-primary" value="Add">
+
+</div>
+</form>
+</div>
+
+<div class="well well-sm">
+ <table style="border-collapse: separate; border-spacing:3px">
+  <tr>
+    <td>
+    <h4>Messages count: {{messages.length}}</h4>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    Order by ID: 
+    <select ng-model="orderProp">
+      <option value="id">Ascending</option>
+      <option value="-id">Descending</option>
+    </select>
+    </td>
+</tr>
+</table>
+
+
+</div>
+<div class="panel panel-default" ng-repeat="message in messages | orderBy: orderProp">
+
+<div ng-show="message.disliked" style="float:right; margin: 0px 15px 5px 0px">
+  <span><a ng-click="dislikeMsg(message)">{{message.created_at | myDate}} See <span class="glyphicon glyphicon-eye-open"></span></a></span> 
+</div>
+
+<div style="clear:both"></div>
+
+<div ng-hide="message.disliked">
+  <div class="panel-heading" ng-model="message"><b>Id: {{message.id}}</b>
+
+    <a href="#" tooltip="{{message.created_at | myDateTool}}" tooltip-placement="right">{{message.created_at | myDate}}</a>
+
+    <button class="btn btn-default btn-xs" ng-click="delMessage(message)" style="float:right">X</button>
+  </div>
+
+  <div class="panel-body" ng-model="message">{{message.msg}}
+  </div>
+
+<div style="csmtdiv">
+  <div style="float:right; margin: 0px 15px 5px 0px"><span><a ng-click="dislikeMsg(message)">Unsee <span class="glyphicon glyphicon-eye-close"></span></a></span> 
+</div>
+  <div style="clear:both"></div>
+</div>
+</div>
+</div>
+
+
