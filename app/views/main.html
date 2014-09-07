@@ -1,4 +1,11 @@
 <div class="container">
+
+   <ul class="nav navbar-nav navbar-right" ng-show="signedIn()">
+  <li>
+    <a href="#" ng-click="logout()">Logout</a>
+  </li>
+</ul>
+
 <form role="form" ng-submit="newMessage()">
   <div class="form-group">
     <label for="messageTheme">Theme of message</label>
@@ -38,7 +45,8 @@
 <div class="panel panel-default" ng-repeat="message in messages | orderBy: orderProp">
 
 <div ng-show="message.disliked" style="float:right; margin: 0px 15px 5px 0px">
-  <span><a ng-click="dislikeMsg(message)">{{message.created_at | myDate}} See <span class="glyphicon glyphicon-eye-open"></span></a></span> 
+  <span><a ng-click="dislikeMsg(message)">{{message.created_at | myDateTool}} See <span class="glyphicon glyphicon-eye-open"></span></a></span> 
+
 </div>
 
 <div style="clear:both"></div>
@@ -59,7 +67,10 @@
 </div>
   <div style="clear:both"></div>
 </div>
+
 </div>
+
+
 </div>
 
 

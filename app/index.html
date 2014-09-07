@@ -13,6 +13,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/jQuery_notification/jquery.notifications.css">
     <!-- endbuild -->
 
 
@@ -25,7 +26,7 @@
     <!-- Add your site or application content here -->
     <div class="container-fluid">
       <div class="header">
-        <h3 class="text-muted">opApp</h3>
+        <h3 ng-bind="$root.title" class="text-muted"></h3>
         <ul class="nav nav-pills">
 
           <li><a ng-href="#">Dashboard<span class="badge"></span></a></li>
@@ -69,6 +70,13 @@
     <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
     <script src="bower_components/angular-websql/angular-websql.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/userapp/userapp.client.js"></script>
+    <script src="bower_components/userapp-angular/angularjs.userapp.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+    <script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/firebase-token-generator/build/firebase-token-generator.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->
@@ -77,8 +85,12 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/auth.js"></script>
         <script src="scripts/filters/date.js"></script>
-       <!-- <script src="scripts/directives/directives.js"></script> -->
+        <!--<script src="scripts/directives/derectives.js"></script>-->
+        <script src="scripts/services/authService.js"></script>
+        <script src="scripts/services/bundle.js"></script>
+
         <!-- endbuild -->
 
 </body>

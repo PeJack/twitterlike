@@ -8,17 +8,28 @@
  * Controller of the opAppApp
  */
 
-angular.module('opAppApp')
-	.controller('MainCtrl', function($scope, $webSql, $filter) {
+App.controller('MainCtrl', function($scope, $webSql, $filter, $location, Auth) {
+
 		$scope.db = $webSql.openDatabase ('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+		
 		$scope.db.selectAll("messages").then(function(results) {
 			$scope.messages = [];
 			for(var i = 0; i < results.rows.length; i++) {
 				$scope.messages.push(angular.copy(results.rows.item(i)));
 			}
 		});
+
 	$scope.orderProp = '-id';
-	
+
+	$scope.$on('$firebaseSimpleLogin:logout', function() {
+		$location.path('/login');
+	});
+
+	$scope.logout = function() {
+		Auth.logout();
+	}
+
+
 
 	$scope.newMessage = function() {
 		if($scope.message) {
@@ -32,7 +43,7 @@ angular.module('opAppApp')
   		}
   	})
   	$scope.message = '';
- }
+ 		}
 	};
 
 	$scope.delMessage = function(message) {
@@ -49,10 +60,7 @@ angular.module('opAppApp')
 		} else if ($scope.messages[pos].disliked === 'true') {
 		$scope.messages[pos].disliked = 'false'
 		$scope.db.update("messages", {"disliked": false}, {"id": $scope.messages[pos].id});
-		
 		}
-
-	};
-
-	})
+	}
+	});
 
